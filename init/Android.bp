@@ -1,5 +1,5 @@
 cc_library_static {
-    name: "libinit_umi",
+    name: "libinit_apollo",
     header_libs: [
         "libbase_headers",
     ],
@@ -10,6 +10,6 @@ cc_library_static {
     static_libs: [
         "libbase",
     ],
-    srcs: ["init_umi.cpp"],
+    srcs: ["init_apollo.cpp"],
     recovery_available: true,
 }
