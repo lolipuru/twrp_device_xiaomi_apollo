@@ -20,6 +20,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # Configure core_64_bit_only.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 # Configure twrp
 $(call inherit-product, vendor/twrp/config/common.mk)
 
@@ -27,7 +30,7 @@ PRODUCT_PACKAGES += \
     bootctrl.xiaomi_sm8250.recovery
 
 # SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 29
+PRODUCT_SHIPPING_API_LEVEL := 30
 # VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
 
@@ -41,6 +44,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(DEVICE_PATH)/security/magisk \
     $(DEVICE_PATH)/security/miui_releasekey
+
+# Props for a Successful Casefold Format 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.volume.options=::v2 
 
 # PRODUCT_RELEASE_NAME ro.twrp.device.name
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=$(PRODUCT_RELEASE_NAME)
