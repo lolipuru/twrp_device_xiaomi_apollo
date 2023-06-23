@@ -16,6 +16,8 @@
 
 DEVICE_PATH := device/xiaomi/umi
 
+TW_USE_FBEV2 := true
+
 # Inherit from device.mk configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
